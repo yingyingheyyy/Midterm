@@ -1,4 +1,11 @@
+//Creative Coding Midterm Project by Yingying He
+
+//Idea inspiration: Art Anxiety by Joan Cornella https://www.instagram.com/p/Cc2Vd-HPQPO/?igshid=YmMyMTA2M2Y=
+
+//Code inspiration: The Coding Train video https://www.youtube.com/watch?v=i2C1hrJMwz0&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA&index=36
+
 let brain;
+
 let levelImage1;
 let levelImage2;
 let levelImage3;
@@ -8,7 +15,8 @@ let level2;
 let level3;
  
 let currentLevel;
- 
+
+//preload all images 
 function preload(){
   currentLevel = 0;
   brain = loadImage("brain1.jpg")
@@ -20,7 +28,7 @@ function preload(){
 function setup() {
   createCanvas(400, 400);
   
-  // set up buttons of level of anxiety
+  // set up buttons of levels of anxiety
   button1 = createButton ("Anxiety Level 1");
   button1.position(270, 150);
   button2 = createButton ("Anxiety Level 2");
@@ -28,7 +36,10 @@ function setup() {
   button3 = createButton ("Anxiety Level 3");
   button3.position(270, 250);
  
-  // https://stackoverflow.com/questions/35680778/p5js-button-mousepressed-calls-function-arguments
+  // Add mousePressed interaction
+  
+  //The mousePressed function only takes the name of the displayed function in the condition, so when I tried to  add a parameter to indicate which level I want to display , it failed. I googled it to see if I can make this possible, and got inspiration from the answer on this page.  https://stackoverflow.com/questions/35680778/p5js-button-mousepressed-calls-function-arguments
+  
   level1 = new Level(270, 200, 30, levelImage1);
   button1.mousePressed(function() { changeLevel(1);});
   
@@ -50,7 +61,8 @@ function draw() {
 function changeLevel(level){
   currentLevel = level;
 }
- 
+
+ //Use the function loadLevel to control which object will show up when the button is clicked.
 function loadLevel(){
   if (currentLevel == 1) {
     level1.show();
@@ -66,7 +78,8 @@ function loadLevel(){
   }
 }
  
- 
+ //Create a class for different anxiety levels.
+
 class Level{
   constructor(x,y,r,img){
     this.x = x;
